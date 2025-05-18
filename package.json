@@ -1,0 +1,14 @@
+{
+  "name": "tsgui",
+  "version": "1.0.0",
+  "description": "Terminal based interface for Linux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leonardo Pinezi",
+  "license": "ISC",
+  "dependencies": {
+    "blessed": "^0.1.81"
+  }
+}
