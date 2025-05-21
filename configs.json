@@ -1,0 +1,11 @@
+{
+  "background": "#00f",
+  "taskbar": "#0ff",
+  "taskbar_left": "0%",
+  "font_color": "#000",
+  "select_item": "#55f",
+  "selected_font": "#000",
+  "border_color": "#bd93f9",
+  "scrollbar_bg": "#1e1f29",
+  "highlight": "#8be9fd"
+}

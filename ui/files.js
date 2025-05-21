@@ -2,9 +2,12 @@ const blessed = require('blessed');
 const fs = require("fs");
 const path = require("path");
 const { spawn } = require('child_process');
+const tsgui = require("../tsgui-module");
+
+const createTextEditor = require('./TsEditor');
 
 function createFileManager(screen, homePath) {
-    const files = fs.readdirSync(homePath);
+    var files = fs.readdirSync(homePath);
     let file = undefined;
 
     const fileManager = blessed.list({
@@ -77,14 +80,34 @@ function createFileManager(screen, homePath) {
     closeWindow.focus();
     screen.render();
 
+    fileManager.key(["C-o"], () => {
+        const filename = fileManager.getItem(fileManager.selected).getText();
+        const filepath = path.join(homePath, filename);
+        if (fs.statSync(filepath).isFile()) {
+            const content = fs.readFileSync(filepath, 'utf8');
+            createTextEditor({ content: content, filename: filename, screen });
+        }
+    });
+
+    fileManager.key(["C-d"], () => {
+        const filename = fileManager.getItem(fileManager.selected).getText();
+        const filepath = path.join(homePath, filename);
+        if (fs.statSync(filepath).isFile()) {
+            fs.unlinkSync(filepath);
+            files = fs.readdirSync(homePath);
+            fileManager.setItems(files);
+            screen.render();
+        }
+    });
+
     fileManager.on('select', (item) => {
         const filename = item.getText();
         const filepath = path.join(homePath, filename);
         file = filepath;
 
         if (fs.statSync(filepath).isFile()) {
-            if (!filename.endsWith(".sh")) {
-                const content = fs.readFileSync(filepath, 'utf8');
+            const content = fs.readFileSync(filepath, 'utf8');
+            if (!filename.endsWith(".js")) {
                 const viewer = blessed.box({
                     parent: screen,
                     top: 'center',
@@ -141,6 +164,8 @@ function createFileManager(screen, homePath) {
 
                 closeButton.focus();
                 screen.render();
+            } else {
+                eval(content);
             }
         }
     });

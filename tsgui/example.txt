@@ -1,1 +1,0 @@
-TSGui is a lightweight and modular terminal-based graphical user interface framework built using Node.js and the Blessed library. It provides a simple yet powerful environment to create interactive CLI applications with windows, panels, taskbars, and file managers — all within the terminal.
