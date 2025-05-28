@@ -14,7 +14,6 @@ module.exports = {
             label: data.title || "New Window",
             content: data.content || "",
             lineWrap: false,
-            tags: false,
             border: {
                 type: 'line'
             },
@@ -25,10 +24,10 @@ module.exports = {
                 bg: '#1e1e2e',
                 fg: '#f8f8f2',
             },
-            alwaysScroll: true,
-            scrollable: true,
+            alwaysScroll: data.scroll || true,
+            scrollable: data.scroll || true,
             tags: true,
-            wrap: false,
+            wrap: data.fit || false,
             scrollbar: {
                 ch: ' ',
                 style: {
@@ -68,6 +67,48 @@ module.exports = {
         screen.append(win);
         screen.render();
 
+        win.focus();
+
         return win;
     },
+
+    prompt: (title = "New prompt", entry = "", screen) => {
+        return new Promise((resolve, reject) => {
+            const prompt = blessed.prompt({
+                parent: screen,
+                top: "center",
+                left: "center",
+                height: "shrink",
+                width: "50%",
+                label: "PopBox",
+                keys: true,
+                mouse: true,
+                border: "line",
+                style: {
+                    bg: '#111',
+                    fg: 'white',
+                    border: {
+                        fg: '#ffffff'
+                    }
+                },
+                draggable: true,
+            });
+
+            screen.append(prompt);
+
+            prompt.input(title, entry, (err, value) => {
+                prompt.destroy();
+                screen.render();
+
+                if (err) {
+                    reject(new Error("Prompt cancelled or failed.")); // Ou resolve(null) se preferir
+                } else {
+                    resolve(value);
+                }
+            });
+
+            prompt.focus();
+            screen.render();
+        });
+    }
 }

@@ -1,9 +1,7 @@
-const os = require("os");
-
 let win = tsgui.window({
     "title": "TSGui informations",
-    "content": `TSGui version 2.0
-Version name : Penguin
+    "content": `TSGui version 3.0
+Version name : Hamster
 
 Creator : Leonardo Pinezi 2025
 Repository : https://rb.gy/kzhw8w

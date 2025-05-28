@@ -4,6 +4,7 @@ TSGui (Terminal Simple GUI) is a minimalist terminal-based graphical user interf
 
 It simulates windows, buttons, text boxes and other UI elements with ASCII art, without using heavy external libraries.
 
+<<<<<<< HEAD
 ## Changes 2.0 (Penguin Edition)
 - Added config.js file for configuration
 - Added tsgui-module
@@ -13,6 +14,12 @@ It simulates windows, buttons, text boxes and other UI elements with ASCII art, 
 - Added shutdown button
 - Fixed bugs
 - Now you can execute .js files as codes in */tsgui* folder and as a program in taskbar (*/ui* folder)
+=======
+## Changes 3.0 (Hamster Edition) - Unstable/Incomplete
+- NodeBox (NodeJs terminal)
+- Fixed bugs
+- Popups for modules
+>>>>>>> 4725a76 (Hamster Edition (3.0))
 
 ## ✨ Features
 

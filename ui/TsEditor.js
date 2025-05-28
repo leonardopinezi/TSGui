@@ -30,7 +30,7 @@ function createTextEditor({ content = "", filename = "", screen }) {
         screen.render();
     }
 
-    textEditor[0].key(["C-s"], () => {
+    textEditor[0].key(["C-s"], async () => {
         if (filename === "") {
             filename = Date.now() + ".txt";
             textEditor[0].setLabel("TsEditor " + filename);
@@ -39,6 +39,10 @@ function createTextEditor({ content = "", filename = "", screen }) {
 
         fs.writeFileSync(`./tsgui/${filename}`, lines.join("\n"), "utf8");
     });
+
+    textEditor[0].key(["C-a"], async ()=>{
+        const fname = await tsgui.prompt("Edit filename", "", screen);
+    })
 
     textEditor[0].on("keypress", (ch, key) => {
         if (key.ctrl || key.meta) return;

@@ -1,6 +1,9 @@
 const blessed = require('blessed');
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
+
+const { exec } = require("child_process");
 
 const tsgui = require("./tsgui-module");
 const createFileManager = require("./ui/files");
@@ -29,7 +32,10 @@ taskItems.forEach((item, id) => {
 
 const screen = blessed.screen({
   smartCSR: true,
-  title: 'TSGUi Workspace'
+  title: 'TSGUi Workspace',
+  mouse: true,
+  input: process.stdin,
+  output: process.stdout
 });
 
 const background = blessed.box({
