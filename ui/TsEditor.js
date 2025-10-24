@@ -2,7 +2,7 @@ const fs = require('fs');
 const blessed = require('blessed');
 const tsgui = require('../tsgui-module');
 
-function createTextEditor({ content = "", filename = "", screen }) {
+function createTextEditor({ content = "", filename = "", screen, _path="/home/" }) {
     let lines = content.split('\n');
     let cursorX = 0;
     let cursorY = 0;
@@ -31,18 +31,17 @@ function createTextEditor({ content = "", filename = "", screen }) {
     }
 
     textEditor[0].key(["C-s"], async () => {
-        if (filename === "") {
-            filename = Date.now() + ".txt";
-            textEditor[0].setLabel("TsEditor " + filename);
-            updateContent();
-        }
+        if (filename === "") filename = Date.now() + ".txt";
 
-        fs.writeFileSync(`./tsgui/${filename}`, lines.join("\n"), "utf8");
+        textEditor[0].setLabel("TsEditor " + filename + " - Saved");
+        updateContent();
+
+        fs.writeFileSync(`${_path}/${filename}`, lines.join("\n"), "utf8");
     });
 
     textEditor[0].key(["C-a"], async ()=>{
         const fname = await tsgui.prompt("Edit filename", "", screen);
-    })
+    });
 
     textEditor[0].on("keypress", (ch, key) => {
         if (key.ctrl || key.meta) return;
