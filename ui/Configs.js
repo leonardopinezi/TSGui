@@ -1,7 +1,7 @@
 let win = tsgui.window({
     "title": "TSGui informations",
-    "content": `TSGui version 3.0
-Version name : Hamster
+    "content": `TSGui version 4.0
+Version name : Fox
 
 Creator : Leonardo Pinezi 2025
 Repository : https://rb.gy/kzhw8w
