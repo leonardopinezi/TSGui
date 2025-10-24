@@ -6,23 +6,23 @@ const os = require("os");
 const { exec } = require("child_process");
 
 const tsgui = require("./tsgui-module");
-const createFileManager = require("./ui/files");
+const createFileManager = require("./ui/TFiles");
 const createTextEditor = require('./ui/TsEditor');
 
-var pc_data = JSON.parse(fs.readFileSync("./configs.json", {encoding:"utf-8"}));
+let pc_data = JSON.parse(fs.readFileSync("./configs.json", {encoding:"utf-8"}));
 
 const defaultApps = {
-  "files" : ()=>{
+  "TFiles" : ()=>{
     const fileManager = createFileManager(screen, homePath);
     screen.append(fileManager);
     screen.render();
   },
   "TsEditor": ()=>{
-    createTextEditor({ content: '', filename: '', screen });
+    createTextEditor({ content: '', filename: '', screen, homePath });
   }
 }
 
-const homePath = path.join(__dirname, "tsgui");
+const homePath = `/home/${os.userInfo().username}/`;
 const files = fs.readdirSync(homePath);
 
 const taskItems = fs.readdirSync(path.join(__dirname, "ui"));
