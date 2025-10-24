@@ -1,11 +1,11 @@
 {
-  "background": "#00f",
-  "taskbar": "#0ff",
+  "background": "#121212",
+  "taskbar": "#1e1e2f",
   "taskbar_left": "0%",
-  "font_color": "#000",
-  "select_item": "#55f",
-  "selected_font": "#000",
-  "border_color": "#bd93f9",
-  "scrollbar_bg": "#1e1f29",
-  "highlight": "#8be9fd"
+  "font_color": "#e0e0e0",
+  "select_item": "#ff4081",
+  "selected_font": "#ffffff",
+  "border_color": "#bb86fc",
+  "scrollbar_bg": "#2a2a2a",
+  "highlight": "#00ffff"
 }
